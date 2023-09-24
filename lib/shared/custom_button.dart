@@ -25,8 +25,8 @@ class CustomButton extends StatelessWidget {
         borderRadius: BorderRadius.circular(borderRadius ?? 25),
         onTap: onTap,
         child: SizedBox(
-          width: width ?? SizeConfig.defaultSize * 30,
-          height: SizeConfig.defaultSize * 5,
+          width: width ?? SizeConfig.defaultSize * 35,
+          height: SizeConfig.defaultSize * 5.5,
           child: Center(
             child: Text(
               text,

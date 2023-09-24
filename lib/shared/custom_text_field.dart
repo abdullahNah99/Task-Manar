@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:task_manar_app/core/styles/app_colors.dart';
 import 'package:task_manar_app/core/utils/size_config.dart';
 
 class CustomTextField extends StatelessWidget {
   final double? width;
   final String? hintText, labelText;
   final Widget? suffixIcon;
-  final IconData? prefixIcon;
+  final Widget? prefixIcon;
   final void Function()? suffixIconOnTap;
   final void Function(String)? onChanged;
   final String? Function(String?)? validator;
@@ -41,6 +42,9 @@ class CustomTextField extends StatelessWidget {
       width: width ?? SizeConfig.defaultSize * 39,
       child: TextFormField(
         autofocus: autofocus,
+        onTapOutside: (event) {
+          FocusManager.instance.primaryFocus?.unfocus();
+        },
         initialValue: initialValue,
         textInputAction: textInputAction,
         obscureText: obscureText ?? false,
@@ -57,18 +61,16 @@ class CustomTextField extends StatelessWidget {
         onChanged: onChanged,
         decoration: InputDecoration(
           hintText: hintText,
+          hintStyle: TextStyle(
+            color: AppColors.color2,
+            fontWeight: FontWeight.w500,
+            fontSize: SizeConfig.defaultSize * 1.5,
+          ),
           labelText: labelText,
           labelStyle: const TextStyle(fontSize: 22),
-          prefixIcon: prefixIcon != null
-              ? Icon(
-                  prefixIcon,
-                  color: Colors.black,
-                )
-              : null,
+          prefixIcon: prefixIcon,
           suffixIcon: suffixIcon,
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(15),
-          ),
+          border: const UnderlineInputBorder(),
         ),
       ),
     );
