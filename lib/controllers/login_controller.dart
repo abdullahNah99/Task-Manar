@@ -1,9 +1,9 @@
 import 'package:get/get.dart';
-import 'package:task_manar_app/models/login_model.dart';
+import 'package:task_manar_app/models/auth_model.dart';
 import 'package:task_manar_app/services/login_service.dart';
 
 class LoginController extends GetxController {
-  LoginModel? loginModel;
+  AuthModel? loginModel;
 
   Future<void> login({
     required String number,
