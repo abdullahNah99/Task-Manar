@@ -1,11 +1,11 @@
 import 'package:dartz/dartz.dart';
-import 'package:task_manar_app/models/login_model.dart';
+import 'package:task_manar_app/models/auth_model.dart';
 
 import '../core/constants/end_points.dart';
 import '../core/utils/http_api_services.dart';
 
 abstract class LoginService {
-  static Future<Either<void, LoginModel>> login({
+  static Future<Either<void, AuthModel>> login({
     required String number,
     required String password,
   }) async {
@@ -13,7 +13,7 @@ abstract class LoginService {
       var response = await ApiServices.post(
           endPoint: AppEndPoints.login,
           body: {'phone_number': number, 'password': password});
-      return right(LoginModel.fromJson(response));
+      return right(AuthModel.fromJson(response));
     } catch (er) {
       return left(null);
     }
