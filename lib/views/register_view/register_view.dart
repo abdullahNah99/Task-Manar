@@ -135,6 +135,10 @@ class RegisterView extends StatelessWidget {
                           validator: (value) {
                             if (value?.isEmpty ?? true) {
                               return 'required';
+                            } else if (controller
+                                    .confirmPasswordController.text !=
+                                controller.passwordController.text) {
+                              return "No match";
                             } else if (value!.length < 8) {
                               return 'Password must be at least 8 characters';
                             }
@@ -164,7 +168,15 @@ class RegisterView extends StatelessWidget {
                         text: 'Register',
                         color: AppColors.color2,
                         onTap: () async {
-                          if (controller.formKey.currentState!.validate()) {}
+                          if (controller.formKey.currentState!.validate()) {
+                            Get.toNamed(AppRouter.addImageViewBody, arguments: {
+                              'name': controller.nameController.text,
+                              'phone': controller.phoneController.text,
+                              'pas': controller.passwordController.text,
+                              'confpas':
+                                  controller.confirmPasswordController.text,
+                            });
+                          }
                         },
                       ),
                       const VerticalSpace(2),

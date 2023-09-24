@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:task_manar_app/core/functions/custom_progress_indicator.dart';
+import 'package:task_manar_app/core/utils/app_router.dart';
 import 'package:task_manar_app/models/auth_model.dart';
 import 'package:task_manar_app/services/register_services.dart';
 
@@ -22,6 +24,7 @@ class RegisterController extends GetxController {
     required String passwordConfirmation,
     required String image,
   }) async {
+    CustomProgressIndicator.showProgressIndicator(Get.context!);
     (await RegisterServices.register(
       fullName: fullName,
       phoneNumber: phoneNumber,
@@ -30,8 +33,16 @@ class RegisterController extends GetxController {
       image: image,
     ))
         .fold(
-      (failure) => null,
-      (registerModel) => this.registerModel = registerModel,
+      (failure) {
+        Get.back();
+
+        Get.snackbar('Error', failure.failureMsg);
+      },
+      (registerModel) {
+        this.registerModel = registerModel;
+        Get.back();
+        Get.offAllNamed(AppRouter.loginRout);
+      },
     );
   }
 

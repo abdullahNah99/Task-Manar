@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
+import 'package:task_manar_app/controllers/register_controller.dart';
 import 'package:task_manar_app/core/utils/size_config.dart';
 import 'package:task_manar_app/shared/custom_button.dart';
 import 'package:task_manar_app/shared/custom_text.dart';
@@ -11,17 +13,20 @@ class AddImageView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: AddImageViewBody(),
+    Map<String, String> arg = Get.arguments;
+
+    return Scaffold(
+      body: AddImageViewBody(arg: arg),
     );
   }
 }
 
 class AddImageViewBody extends StatelessWidget {
-  const AddImageViewBody({super.key});
-
+  const AddImageViewBody({super.key, required this.arg});
+  final Map<String, String> arg;
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(RegisterController());
     return Padding(
       padding: EdgeInsets.symmetric(
         horizontal: SizeConfig.defaultSize * 2.3,
@@ -62,7 +67,15 @@ class AddImageViewBody extends StatelessWidget {
           const Expanded(child: VerticalSpace(1)),
           CustomButton(
             text: 'Next',
-            onTap: () {},
+            onTap: () {
+              controller.register(
+                fullName: arg['name'].toString(),
+                phoneNumber: arg['phone'].toString(),
+                password: arg['pas'].toString(),
+                passwordConfirmation: arg['confpas'].toString(),
+                image: controller.imageFile!.path,
+              );
+            },
           ),
         ],
       ),
