@@ -45,8 +45,11 @@ abstract class ApiServices {
       log('HTTP POST Data: $data');
       return data;
     } else {
+      // throw Exception(
+      //   'there is an error with status code ${response.statusCode} and with body : ${response.body}',
+      // );
       throw Exception(
-        'there is an error with status code ${response.statusCode} and with body : ${response.body}',
+        response.body,
       );
     }
   }
