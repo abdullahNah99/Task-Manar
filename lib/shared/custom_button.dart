@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:task_manar_app/core/styles/app_colors.dart';
 import 'package:task_manar_app/core/utils/size_config.dart';
 
 class CustomButton extends StatelessWidget {
@@ -19,7 +20,7 @@ class CustomButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: color,
+      color: color ?? AppColors.color2,
       borderRadius: BorderRadius.circular(borderRadius ?? 25),
       child: InkWell(
         borderRadius: BorderRadius.circular(borderRadius ?? 25),

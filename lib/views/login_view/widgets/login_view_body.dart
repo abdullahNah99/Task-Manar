@@ -16,7 +16,10 @@ class LoginViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     final LoginController controller = Get.put(LoginController());
     return SingleChildScrollView(
-      padding: EdgeInsets.symmetric(horizontal: SizeConfig.defaultSize * 2.3),
+      padding: EdgeInsets.symmetric(
+        horizontal: SizeConfig.defaultSize * 2.3,
+        vertical: SizeConfig.defaultSize * 2,
+      ),
       child: Form(
         key: controller.formKey,
         child: Column(
@@ -98,7 +101,6 @@ class LoginViewBody extends StatelessWidget {
             const VerticalSpace(8),
             CustomButton(
               text: 'Login',
-              color: AppColors.color2,
               onTap: () async {
                 if (controller.formKey.currentState!.validate()) {
                   await controller.login(context);
