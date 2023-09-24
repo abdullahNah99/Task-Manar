@@ -101,4 +101,39 @@ abstract class ApiServices {
       );
     }
   }
+
+  static Future<dynamic> postWithImage({
+    required String endPoint,
+    required Map<String, String> body,
+    @required String? imagePath,
+    @required String? token,
+  }) async {
+    var request = http.MultipartRequest(
+      'POST',
+      Uri.parse('$_baseUrl$endPoint'),
+    );
+    request.fields.addAll(body);
+    if (imagePath != null) {
+      request.files.add(await http.MultipartFile.fromPath('img', imagePath));
+    }
+    request.headers.addAll(
+      {
+        'Accept': 'application/json',
+        if (token != null) 'Authorization': 'Bearer $token',
+      },
+    );
+    http.StreamedResponse response = await request.send();
+
+    http.Response r = await http.Response.fromStream(response);
+
+    if (r.statusCode == 200) {
+      Map<String, dynamic> data = jsonDecode(r.body);
+      log('HTTP POSTIMAGE Data: $data');
+      return data;
+    } else {
+      throw Exception(
+        'there is an error with status code ${r.statusCode} and with body : ${r.body}',
+      );
+    }
+  }
 }
