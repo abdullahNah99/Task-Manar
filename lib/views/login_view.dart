@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:task_manar_app/core/styles/app_colors.dart';
 import 'package:task_manar_app/core/utils/size_config.dart';
 import 'package:task_manar_app/shared/custom_button.dart';
@@ -26,12 +27,20 @@ class LoginViewBody extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: SizeConfig.defaultSize * 2.3),
       child: Column(
         children: [
-          const VerticalSpace(22),
+          const VerticalSpace(5),
+          Center(
+            child: SvgPicture.asset(
+              'assets/svg/log.svg',
+              width: SizeConfig.defaultSize * 11.4,
+              height: SizeConfig.defaultSize * 5,
+            ),
+          ),
+          const VerticalSpace(13),
           Align(
             alignment: Alignment.centerLeft,
             child: CustomText(
               'Login',
-              fontSize: 3.3,
+              fontSize: 4,
               fontWeight: FontWeight.w700,
               color: AppColors.color2,
             ),
@@ -78,6 +87,7 @@ class LoginViewBody extends StatelessWidget {
           CustomButton(
             text: 'Login',
             color: AppColors.color2,
+            onTap: () {},
           ),
           const VerticalSpace(1.2),
           Row(
