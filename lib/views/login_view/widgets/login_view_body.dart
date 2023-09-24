@@ -104,7 +104,7 @@ class LoginViewBody extends StatelessWidget {
               text: 'Login',
               onTap: () async {
                 if (controller.formKey.currentState!.validate()) {
-                  await controller.login(context);
+                  await controller.login();
                 }
               },
             ),

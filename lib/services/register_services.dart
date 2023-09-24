@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:dartz/dartz.dart';
 import 'package:task_manar_app/core/constants/end_points.dart';
 import 'package:task_manar_app/core/errors/failures.dart';
@@ -27,17 +26,14 @@ abstract class RegisterServices {
       );
       return right(AuthModel.fromJson(response));
     } catch (ex) {
+      // log(ex.toString());
+      // return left(Failure(failureMsg: ex.toString()));
       var helper = json.decode(ex.toString().split('Exception:')[1]);
-
-      if (helper['status'] != 'error') {
-        return left(Failure(failureMsg: helper['message']));
-      } else {
-        return left(
-          Failure(
-            failureMsg: helper['message']['phone_number'][0],
-          ),
-        );
-      }
+      return left(
+        Failure(
+          failureMsg: helper['message'],
+        ),
+      );
     }
   }
 }
