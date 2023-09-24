@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:task_manar_app/core/styles/app_colors.dart';
+import 'package:task_manar_app/core/utils/app_router.dart';
 import 'package:task_manar_app/core/utils/cache_helper.dart';
 import 'package:task_manar_app/core/utils/size_config.dart';
-import 'package:task_manar_app/views/login_view.dart';
+import 'package:task_manar_app/views/login_view/login_view.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -23,6 +24,7 @@ class MyApp extends StatelessWidget {
       ),
       debugShowCheckedModeBanner: false,
       home: const LoginView(),
+      getPages: AppRouter.getPages,
     );
   }
 }
