@@ -31,7 +31,7 @@ abstract class ApiServices {
   static Future<dynamic> post({
     required String endPoint,
     required Map<String, dynamic> body,
-    @required String? token,
+    String? token,
   }) async {
     Map<String, String> headers = {};
     if (token != null) {
