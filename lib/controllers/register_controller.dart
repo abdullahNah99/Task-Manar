@@ -52,6 +52,7 @@ class RegisterController extends GetxController {
       source: ImageSource.gallery,
       imageQuality: 80,
     );
+    update();
   }
 
   void showHidePassword() {
