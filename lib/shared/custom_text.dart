@@ -23,6 +23,7 @@ class CustomText extends StatelessWidget {
     return Text(
       text,
       textAlign: textAlign,
+      maxLines: 2,
       style: TextStyle(
         fontSize: fontSize != null ? SizeConfig.defaultSize * fontSize! : null,
         color: color,

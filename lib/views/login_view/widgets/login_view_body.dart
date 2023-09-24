@@ -3,6 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:task_manar_app/controllers/login_controller.dart';
 import 'package:task_manar_app/core/styles/app_colors.dart';
+import 'package:task_manar_app/core/utils/app_router.dart';
 import 'package:task_manar_app/core/utils/size_config.dart';
 import 'package:task_manar_app/shared/custom_button.dart';
 import 'package:task_manar_app/shared/custom_text.dart';
@@ -28,8 +29,8 @@ class LoginViewBody extends StatelessWidget {
             Center(
               child: SvgPicture.asset(
                 'assets/svg/log.svg',
-                width: SizeConfig.defaultSize * 11.4,
-                height: SizeConfig.defaultSize * 5,
+                width: SizeConfig.defaultSize * 12.4,
+                height: SizeConfig.defaultSize * 7,
               ),
             ),
             const VerticalSpace(13),
@@ -77,8 +78,8 @@ class LoginViewBody extends StatelessWidget {
                   },
                   child: Icon(
                     controller.obscureText
-                        ? Icons.remove_red_eye
-                        : Icons.password,
+                        ? Icons.visibility
+                        : Icons.visibility_off,
                     color: Colors.grey,
                   ),
                 ),
@@ -119,7 +120,9 @@ class LoginViewBody extends StatelessWidget {
                 ),
                 const HorizintalSpace(1),
                 InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    Get.toNamed(AppRouter.registerRout);
+                  },
                   borderRadius: BorderRadius.circular(15),
                   child: CustomText(
                     'Create one',
