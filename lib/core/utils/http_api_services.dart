@@ -114,7 +114,7 @@ abstract class ApiServices {
     );
     request.fields.addAll(body);
     if (imagePath != null) {
-      request.files.add(await http.MultipartFile.fromPath('img', imagePath));
+      request.files.add(await http.MultipartFile.fromPath('image', imagePath));
     }
     request.headers.addAll(
       {
@@ -132,7 +132,7 @@ abstract class ApiServices {
       return data;
     } else {
       throw Exception(
-        'there is an error with status code ${r.statusCode} and with body : ${r.body}',
+        r.body,
       );
     }
   }

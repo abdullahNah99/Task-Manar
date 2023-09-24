@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:task_manar_app/core/functions/custom_progress_indicator.dart';
+import 'package:task_manar_app/core/utils/app_router.dart';
 import 'package:task_manar_app/models/auth_model.dart';
 import 'package:task_manar_app/services/login_service.dart';
 
@@ -11,10 +12,8 @@ class LoginController extends GetxController {
   final passwordController = TextEditingController();
   bool obscureText = true;
 
-  Future<void> login(
-    BuildContext context,
-  ) async {
-    CustomProgressIndicator.showProgressIndicator(context);
+  Future<void> login() async {
+    CustomProgressIndicator.showProgressIndicator(Get.context!);
     (await LoginService.login(
       number: phoneController.text,
       password: passwordController.text,
@@ -33,6 +32,7 @@ class LoginController extends GetxController {
         phoneController.clear();
         passwordController.clear();
         Get.back();
+        Get.offAndToNamed(AppRouter.myVehiclesView);
       },
     );
   }

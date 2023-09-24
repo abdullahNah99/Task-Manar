@@ -35,13 +35,26 @@ class RegisterController extends GetxController {
         .fold(
       (failure) {
         Get.back();
-
-        Get.snackbar('Error', failure.failureMsg);
+        Get.back();
+        Get.snackbar(
+          'Error',
+          failure.failureMsg,
+          backgroundColor: Colors.red,
+        );
       },
       (registerModel) {
         this.registerModel = registerModel;
+        nameController.clear();
+        phoneController.clear();
+        passwordController.clear();
+        confirmPasswordController.clear();
         Get.back();
         Get.offAllNamed(AppRouter.loginRout);
+        Get.snackbar(
+          '',
+          'Account Created Successfully',
+          backgroundColor: Colors.green,
+        );
       },
     );
   }
@@ -52,6 +65,7 @@ class RegisterController extends GetxController {
       source: ImageSource.gallery,
       imageQuality: 80,
     );
+    update();
   }
 
   void showHidePassword() {
