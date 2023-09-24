@@ -17,6 +17,7 @@ class CustomTextField extends StatelessWidget {
   final String? initialValue;
   final bool autofocus;
   final TextInputAction? textInputAction;
+  final TextEditingController? controller;
   const CustomTextField({
     super.key,
     this.width,
@@ -29,11 +30,12 @@ class CustomTextField extends StatelessWidget {
     this.validator,
     this.keyboardType,
     this.obscureText,
-    this.maxLines,
+    this.maxLines = 1,
     this.initialValue,
     this.autofocus = false,
     this.maxLength,
     this.textInputAction,
+    this.controller,
   });
 
   @override
@@ -41,6 +43,7 @@ class CustomTextField extends StatelessWidget {
     return SizedBox(
       width: width ?? SizeConfig.defaultSize * 39,
       child: TextFormField(
+        controller: controller,
         autofocus: autofocus,
         onTapOutside: (event) {
           FocusManager.instance.primaryFocus?.unfocus();
