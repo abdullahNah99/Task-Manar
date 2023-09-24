@@ -15,7 +15,6 @@ class RegisterController extends GetxController {
   bool obscureText = true;
   bool obscureText1 = true;
 
-
   Future<void> register({
     required String fullName,
     required String phoneNumber,
@@ -36,13 +35,13 @@ class RegisterController extends GetxController {
     );
   }
 
-
   Future<void> selectImage() async {
     final ImagePicker picker = ImagePicker();
     imageFile = await picker.pickImage(
       source: ImageSource.gallery,
       imageQuality: 80,
     );
+  }
 
   void showHidePassword() {
     obscureText = !obscureText;
