@@ -70,7 +70,7 @@ class Data {
     delegateImage = json['delegate_image'];
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
-    type = json['type'] != null ? new Type.fromJson(json['type']) : null;
+    type = json['type'] != null ? Type.fromJson(json['type']) : null;
   }
 
   Map<String, dynamic> toJson() {

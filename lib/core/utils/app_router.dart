@@ -1,5 +1,6 @@
 import 'package:get/get_navigation/src/routes/get_route.dart';
 import 'package:get/get_navigation/src/routes/transitions_type.dart';
+import 'package:task_manar_app/middleware/middleware.dart';
 import 'package:task_manar_app/views/login_view/login_view.dart';
 import 'package:task_manar_app/views/my_vehicles_view/my_vehicles_view.dart';
 import 'package:task_manar_app/views/register_view/add_image_view.dart';

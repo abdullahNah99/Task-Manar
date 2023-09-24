@@ -1,9 +1,12 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:task_manar_app/controllers/login_controller.dart';
 import 'package:task_manar_app/core/styles/app_colors.dart';
 import 'package:task_manar_app/core/utils/app_router.dart';
+import 'package:task_manar_app/core/utils/cache_helper.dart';
 import 'package:task_manar_app/core/utils/size_config.dart';
 import 'package:task_manar_app/shared/custom_button.dart';
 import 'package:task_manar_app/shared/custom_text.dart';
@@ -103,6 +106,7 @@ class LoginViewBody extends StatelessWidget {
             CustomButton(
               text: 'Login',
               onTap: () async {
+                // log(CacheHelper.getData(key: 'Token'));
                 if (controller.formKey.currentState!.validate()) {
                   await controller.login();
                 }

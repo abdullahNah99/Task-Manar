@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:task_manar_app/controllers/my_vehicle_controller.dart';
 import 'package:task_manar_app/core/styles/app_colors.dart';
 import 'package:task_manar_app/core/utils/size_config.dart';
 import 'package:task_manar_app/shared/custom_button.dart';
@@ -23,6 +24,7 @@ class MyVehiclesViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // final controller = Get.put(MyVehicleController());
     return Column(
       children: [
         Container(
@@ -73,7 +75,10 @@ class MyVehiclesViewBody extends StatelessWidget {
               top: SizeConfig.defaultSize * 5,
               bottom: SizeConfig.defaultSize,
             ),
-            itemBuilder: (context, index) => MyVehicleItem(index: index),
+            itemBuilder: (context, index) => MyVehicleItem(
+              index: index,
+              // myVehicleModel: controller.myVehicleModel!,
+            ),
             separatorBuilder: (context, index) => const VerticalSpace(1),
             itemCount: 10,
           ),

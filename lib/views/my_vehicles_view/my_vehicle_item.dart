@@ -1,12 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:task_manar_app/core/styles/app_colors.dart';
 import 'package:task_manar_app/core/utils/size_config.dart';
+import 'package:task_manar_app/models/my_vehicle_model.dart';
 import 'package:task_manar_app/shared/custom_image.dart';
 import 'package:task_manar_app/shared/custom_text.dart';
 
 class MyVehicleItem extends StatelessWidget {
+  // final MyVehicleModel myVehicleModel;
   final int index;
-  const MyVehicleItem({super.key, required this.index});
+  const MyVehicleItem({
+    super.key,
+    required this.index,
+    // required this.myVehicleModel,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -36,6 +43,7 @@ class MyVehicleItem extends StatelessWidget {
                 Row(
                   children: [
                     CustomImage(
+                      // imageUrl: myVehicleModel.data![index].vehicleImage,
                       circleShape: true,
                       width: SizeConfig.defaultSize * 6,
                       height: SizeConfig.defaultSize * 6,
