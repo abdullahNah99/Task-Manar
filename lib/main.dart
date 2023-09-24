@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:task_manar_app/core/styles/app_colors.dart';
 import 'package:task_manar_app/core/utils/cache_helper.dart';
 import 'package:task_manar_app/core/utils/size_config.dart';
 import 'package:task_manar_app/views/login_view.dart';
@@ -16,9 +17,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SizeConfig.init(context);
-    return const GetMaterialApp(
+    return GetMaterialApp(
+      theme: ThemeData(
+        primarySwatch: AppColors.getMaterialColor(AppColors.color1),
+      ),
       debugShowCheckedModeBanner: false,
-      home: LoginView(),
+      home: const LoginView(),
     );
   }
 }
