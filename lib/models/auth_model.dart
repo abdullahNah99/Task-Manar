@@ -1,10 +1,10 @@
-class LoginModel {
+class AuthModel {
   String? status;
   Data? data;
 
-  LoginModel({this.status, this.data});
+  AuthModel({this.status, this.data});
 
-  LoginModel.fromJson(Map<String, dynamic> json) {
+  AuthModel.fromJson(Map<String, dynamic> json) {
     status = json['status'];
     data = json['data'] != null ? Data.fromJson(json['data']) : null;
   }
