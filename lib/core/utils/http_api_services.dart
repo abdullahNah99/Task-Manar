@@ -106,7 +106,7 @@ abstract class ApiServices {
     required String endPoint,
     required Map<String, String> body,
     @required String? imagePath,
-    @required String? token,
+    String? token,
   }) async {
     var request = http.MultipartRequest(
       'POST',
