@@ -7,6 +7,12 @@ import 'package:task_manar_app/services/add_vehcle_services.dart';
 
 class AddVehicleController extends GetxController {
   AddVehicleModel? vehicleModel;
+  final formKey = GlobalKey<FormState>();
+  String? idType;
+  final typeController = TextEditingController();
+  final modelController = TextEditingController();
+  final colorController = TextEditingController();
+  final plateNumberController = TextEditingController();
 
   Future<void> addVehicle({
     required String vehicleTypeId,
@@ -48,4 +54,13 @@ class AddVehicleController extends GetxController {
       },
     );
   }
+
+  List<Map<String, String>> type = [
+    {'id': '1', 'type': 'A'},
+    {'id': '2', 'type': 'B'},
+    {'id': '3', 'type': 'C'},
+    {'id': '4', 'type': 'D'},
+  ];
+
+  List<String> colors = ['red', 'blu', 'black'];
 }
