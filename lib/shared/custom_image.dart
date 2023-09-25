@@ -108,7 +108,7 @@ class CustomNetworkImage extends StatelessWidget {
             ? DecorationImage(
                 fit: fit,
                 image: CachedNetworkImageProvider(
-                  'upload/${imageUrl!}',
+                  'http://taskflutter.futurecode-projects.com/${imageUrl!}',
                 ),
               )
             : null,
