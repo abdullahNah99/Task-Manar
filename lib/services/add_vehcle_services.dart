@@ -20,18 +20,20 @@ abstract class AddVehicleServices {
     required String token,
   }) async {
     try {
-      var response = await ApiServices.post(
+      var response = await ApiServices.postWithImages(
         endPoint: AppEndPoints.addVehicle,
-        body: {
-          'vehicle_type_id': vehicleTypeId,
-          'board_number': boardNumber,
-          'model': model,
-          'color': color,
+        imagesPath: {
           'vehicle_image': vehicleImage,
           'board_image': boardImage,
           'id_image': idImage,
           'mechanic_image': mechanicImage,
           'delegate_image': delegateImage,
+        },
+        body: {
+          'vehicle_type_id': vehicleTypeId,
+          'board_number': boardNumber,
+          'model': model,
+          'color': color,
         },
         token: token,
       );

@@ -1,13 +1,16 @@
 import 'dart:developer';
+import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:task_manar_app/controllers/add_vehicle_controller.dart';
 import 'package:task_manar_app/core/styles/app_colors.dart';
 import 'package:task_manar_app/core/utils/size_config.dart';
 import 'package:task_manar_app/shared/custom_App_bar.dart';
 import 'package:task_manar_app/shared/custom_button.dart';
+import 'package:task_manar_app/shared/custom_image.dart';
 import 'package:task_manar_app/shared/custom_text.dart';
 import 'package:task_manar_app/shared/custom_text_field.dart';
 import 'package:task_manar_app/shared/space_widgets.dart';
@@ -45,7 +48,6 @@ class AddVehiclesView extends StatelessWidget {
                     fit: BoxFit.scaleDown,
                   ),
                   onTap: () {
-                    log('message');
                     Get.defaultDialog(
                         title: 'Select Type',
                         content: Column(
@@ -97,7 +99,6 @@ class AddVehiclesView extends StatelessWidget {
                     fit: BoxFit.scaleDown,
                   ),
                   onTap: () {
-                    log('message');
                     Get.defaultDialog(
                         title: 'Select Color',
                         content: Column(
@@ -142,25 +143,58 @@ class AddVehiclesView extends StatelessWidget {
                   ),
                 ),
                 const VerticalSpace(2),
-                AddImage(text: '1-Mechanics picture', onTap: () {}),
-                const VerticalSpace(1),
-                AddImage(text: '2-Image of the vehicle', onTap: () {}),
-                const VerticalSpace(1),
-                AddImage(text: '3-Picture of the painting', onTap: () {}),
-                const VerticalSpace(1),
-                AddImage(text: '4-Personal identity', onTap: () {}),
-                const VerticalSpace(1),
-                AddImage(text: '5-Agency or delegation', onTap: () {}),
+                ...List.generate(
+                  controller.imageFile.length,
+                  (index) => Column(
+                    children: [
+                      AddImage(
+                          text: controller.imageFile.keys.elementAt(index),
+                          onTap: () {
+                            controller.selectImage(index: index);
+                          }),
+                      const VerticalSpace(1),
+                    ],
+                  ),
+                ),
                 const VerticalSpace(2.5),
-                Container(
-                  height: SizeConfig.defaultSize * 14,
-                  color: Colors.red,
+                GetBuilder<AddVehicleController>(
+                  init: AddVehicleController(),
+                  builder: (controller) {
+                    return SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Container(
+                          height: SizeConfig.defaultSize * 14,
+                          child: Row(
+                            children: List.generate(controller.imageFile.length,
+                                (index) {
+                              if (controller
+                                      .imageFile[controller.nameImage[index]] !=
+                                  null) {
+                                return CustomImage(
+                                  imageFilePath: controller
+                                      .imageFile[controller.nameImage[index]]!
+                                      .path,
+                                );
+                              }
+                              return SizedBox();
+                            }),
+                          )),
+                    );
+                  },
                 ),
                 const VerticalSpace(2.5),
                 CustomButton(
                   text: 'Add Vehicle',
                   onTap: () {
-                    if (controller.formKey.currentState!.validate()) {}
+                    controller.imageFile.forEach((key, value) {
+                      print(controller.imageFile.toString());
+                    });
+                    if (controller.formKey.currentState!.validate()) {
+                      if (controller.validatorHelper()) {
+                      } else {
+                        Get.snackbar('', 'message');
+                      }
+                    }
                   },
                 ),
               ],
