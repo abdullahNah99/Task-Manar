@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:task_manar_app/controllers/my_vehicle_controller.dart';
-import 'package:task_manar_app/core/styles/app_colors.dart';
 import 'package:task_manar_app/core/utils/hanling_data_view.dart';
 import 'package:task_manar_app/core/utils/size_config.dart';
+import 'package:task_manar_app/shared/custom_App_bar.dart';
 import 'package:task_manar_app/shared/custom_button.dart';
-import 'package:task_manar_app/shared/custom_text.dart';
 import 'package:task_manar_app/shared/space_widgets.dart';
 import 'package:task_manar_app/views/my_vehicles_view/my_vehicle_item.dart';
 
@@ -14,8 +13,10 @@ class MyVehiclesView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: MyVehiclesViewBody(),
+    return const SafeArea(
+      child: Scaffold(
+        body: MyVehiclesViewBody(),
+      ),
     );
   }
 }
@@ -32,44 +33,7 @@ class MyVehiclesViewBody extends StatelessWidget {
           statusRequest: controller.statusRequest,
           widget: Column(
             children: [
-              Container(
-                padding: EdgeInsets.only(top: SizeConfig.defaultSize * 5),
-                height: SizeConfig.defaultSize * 10,
-                child: Row(
-                  children: [
-                    const HorizintalSpace(1),
-                    Material(
-                      elevation: 10,
-                      borderRadius: BorderRadius.circular(50),
-                      child: InkWell(
-                        onTap: () {
-                          Get.back();
-                        },
-                        borderRadius: BorderRadius.circular(50),
-                        child: Container(
-                          width: SizeConfig.defaultSize * 4,
-                          height: SizeConfig.defaultSize * 4,
-                          decoration: const BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(50)),
-                          ),
-                          child: Icon(
-                            Icons.arrow_back_ios_new_rounded,
-                            size: SizeConfig.defaultSize * 2.5,
-                          ),
-                        ),
-                      ),
-                    ),
-                    const Spacer(flex: 2),
-                    CustomText(
-                      'My Vehicles',
-                      fontWeight: FontWeight.w400,
-                      color: AppColors.color2,
-                      fontSize: 2.5,
-                    ),
-                    const Spacer(flex: 3),
-                  ],
-                ),
-              ),
+              const CustomAppBar(title: 'My Vehicles'),
               SizedBox(
                 height: SizeConfig.screenHeight * .75,
                 child: ListView.separated(
@@ -99,5 +63,37 @@ class MyVehiclesViewBody extends StatelessWidget {
         );
       },
     );
+
+    // return Column(
+    //   children: [
+    //     const CustomAppBar(title: 'My Vehicles'),
+    //     SizedBox(
+    //       height: SizeConfig.screenHeight * .75,
+    //       child: ListView.separated(
+    //         physics: const BouncingScrollPhysics(),
+    //         padding: EdgeInsets.only(
+    //           left: SizeConfig.defaultSize * 4.5,
+    //           right: SizeConfig.defaultSize * 4.5,
+    //           top: SizeConfig.defaultSize * 3,
+    //           bottom: SizeConfig.defaultSize,
+    //         ),
+    //         itemBuilder: (context, index) => MyVehicleItem(index: index),
+    //         separatorBuilder: (context, index) => const VerticalSpace(1),
+    //         itemCount: 10,
+    //       ),
+    //     ),
+    //     const Expanded(child: VerticalSpace(1)),
+    //     CustomButton(
+    //       text: 'Add Vehicle',
+    //       onTap: () {
+    //         Get.toNamed(AppRouter.addVehiclesView);
+    //       },
+    //     ),
+    //     const VerticalSpace(2),
+    //   ],
+
+    // );
+    // }
+// }
   }
 }

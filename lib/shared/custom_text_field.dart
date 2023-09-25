@@ -18,6 +18,8 @@ class CustomTextField extends StatelessWidget {
   final bool autofocus;
   final TextInputAction? textInputAction;
   final TextEditingController? controller;
+  final bool disableFocusNode;
+  final void Function()? onTap;
   const CustomTextField({
     super.key,
     this.width,
@@ -36,6 +38,8 @@ class CustomTextField extends StatelessWidget {
     this.maxLength,
     this.textInputAction,
     this.controller,
+    this.disableFocusNode = false,
+    this.onTap,
   });
 
   @override
@@ -43,7 +47,9 @@ class CustomTextField extends StatelessWidget {
     return SizedBox(
       width: width ?? SizeConfig.defaultSize * 39,
       child: TextFormField(
+        onTap: onTap,
         controller: controller,
+        focusNode: disableFocusNode ? AlwaysDisabledFocusNode() : null,
         autofocus: autofocus,
         onTapOutside: (event) {
           FocusManager.instance.primaryFocus?.unfocus();
@@ -78,4 +84,9 @@ class CustomTextField extends StatelessWidget {
       ),
     );
   }
+}
+
+class AlwaysDisabledFocusNode extends FocusNode {
+  @override
+  bool get hasFocus => false;
 }
