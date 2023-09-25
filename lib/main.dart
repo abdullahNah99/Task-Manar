@@ -24,6 +24,7 @@ class MyApp extends StatelessWidget {
       ),
       debugShowCheckedModeBanner: false,
       home: const LoginView(),
+      // initialRoute: AppRouter.myVehiclesView,
       getPages: AppRouter.getPages,
     );
   }
